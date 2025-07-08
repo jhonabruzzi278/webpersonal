@@ -1,0 +1,58 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionContainer from "../components/SectionContainer.astro";
+import ProjectsList from "../components/ProjectsList.astro";
+import Code from "../components/icons/Code.astro";
+---
+
+<Layout
+  title="Proyectos - Jonathan Guerra | Desarrollador Web"
+  description="Explora los proyectos más importantes de Jonathan Guerra, desarrollador web especializado en Astro, Next.js y Node.js. Aplicaciones modernas y eficientes."
+>
+  <main class="flex flex-col min-h-[100dvh] space-y-10">
+    <SectionContainer class:list={["py-44 pb-24"]}>
+      <div class="mx-auto w-full max-w-4xl space-y-8">
+        <!-- Botón de regreso -->
+        <div class="flex justify-start">
+          <a 
+            href="/"
+            class="inline-flex items-center gap-2 text-white/70 hover:text-white transition-colors group"
+          >
+            <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            Volver al inicio
+          </a>
+        </div>
+        
+        <!-- Header de la página -->
+        <div class="text-center space-y-4">
+          <h1 class="text-lg md:text-xl lg:text-2xl font-bold text-white text-balance flex items-center justify-center gap-3">
+            <Code class:list={["size-8"]} />
+            Echa un vistazo a mi trabajo más reciente
+          </h1>
+          <p class="text-base md:text-lg lg:text-xl text-white/70 max-w-2xl mx-auto">
+            He trabajado en una variedad de proyectos, desde sitios web simples hasta aplicaciones web complejas. 
+            Aquí tienes algunos de mis favoritos, donde aplico las últimas tecnologías web para crear soluciones innovadoras.
+          </p>
+        </div>
+
+        <!-- Lista de proyectos -->
+        <ProjectsList />
+
+        <!-- Llamada a la acción -->
+        <div class="text-center space-y-4 pt-8">
+          <p class="text-sm md:text-base lg:text-lg text-white/60">
+            ¿Interesado en colaborar en un proyecto?
+          </p>
+          <a 
+            href="mailto:jonathanguerra278@gmail.com"
+            class="inline-flex items-center px-6 py-3 text-sm md:text-base font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors"
+          >
+            Contactar para proyectos
+          </a>
+        </div>
+      </div>
+    </SectionContainer>
+  </main>
+</Layout>

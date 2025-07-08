@@ -1,0 +1,66 @@
+---
+// src/components/EducationList.astro
+---
+
+<div class="flex min-h-0 flex-col gap-y-3">
+  <!-- Entrada de educación -->
+  <div>
+    <a
+      class="block cursor-pointer"
+      href="https://www.duoc.cl"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <div class="flex p-4">
+        <!-- Imagen a la izquierda -->
+        <div class="flex-none">
+          <div class="relative size-20 rounded-full bg-white shadow-lg shadow-white/20 flex items-center justify-center">
+            <!-- Efecto de destello -->
+            <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-white/30 via-white/10 to-transparent"></div>
+            <img
+              class="size-18 object-contain relative z-10"
+              src="/duocuc.webp"
+              alt="Duoc UC"
+            />
+          </div>
+        </div>
+
+        <!-- Texto descriptivo -->
+        <div class="flex-grow ml-4 items-center flex-col group">
+          <div class="flex flex-col w-full">
+            <div class="flex items-center justify-between gap-x-2 text-base w-full">
+              <h3 class="inline-flex items-center justify-center font-semibold leading-none text-sm md:text-base lg:text-lg text-white">
+                Duoc UC
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-chevron-right size-4 translate-x-0 opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100 rotate-0 text-white/60"
+                >
+                  <path d="m9 18 6-6-6-6"></path>
+                </svg>
+              </h3>
+              <div class="text-xs md:text-sm lg:text-base tabular-nums text-white/60 text-right">
+                2024 – presente
+              </div>
+            </div>
+            <div class="font-sans text-xs md:text-sm lg:text-base text-white/70">
+              Técnico en Informática y Telecomunicaciones
+            </div>
+            <div class="font-sans text-xs md:text-sm text-white/50 mt-1">
+              Especialización en desarrollo de software 
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  
+</div>

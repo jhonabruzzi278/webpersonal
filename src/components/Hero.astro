@@ -1,0 +1,77 @@
+---
+// No props necesarios por ahora, puedes añadirlos si quieres personalizar texto o imagen.
+import { Image } from "astro:assets";
+import JonathanPhoto from "../assets/jonathan-photo.jpg";
+---
+
+<section id="hero">
+  <div class="mx-auto w-full max-w-2xl space-y-8">
+    <div class="flex justify-between gap-2">
+      <!-- Texto izquierdo -->
+      <div class="flex flex-col flex-1 space-y-1.5">
+        <div class="flex">
+          <span
+            class="inline-block text-lg md:text-xl lg:text-2xl font-bold tracking-tighter text-white text-balance"
+            style="opacity:1; filter:blur(0px); transform:translateY(-8px) translateZ(0px);"
+          >
+            Hola, soy Jonathan 👋
+          </span>
+        </div>
+        <div class="flex">
+          <span
+            class="inline-block max-w-[600px] text-base md:text-lg lg:text-xl text-white/90 text-wrap"
+            style="opacity:1; filter:blur(0px); transform:translateY(-8px) translateZ(0px);"
+          >
+            Desarrollador web y Soporte IT. De Cuba, actualmente en Chile. Me apasiona crear aplicaciones web modernas y eficientes.
+          </span>
+        </div>
+      </div>
+
+      <!-- Imagen a la derecha -->
+      <div style="opacity:1; filter:blur(0px); transform:translateY(-6px) translateZ(0px);">
+        <span class="relative flex shrink-0 overflow-hidden rounded-full size-32 border border-white/20">
+          <Image 
+            src={JonathanPhoto}
+            alt="Jonathan Guerra"
+            class="aspect-square h-full w-full object-cover"
+            loading="eager"
+          />
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección About integrada -->
+<section id="about" class="mt-16">
+  <div class="mx-auto w-full max-w-2xl space-y-6">
+    <div style="opacity: 1; filter: blur(0px); transform: translateY(-6px) translateZ(0px);">
+      <h2 class="text-lg md:text-xl lg:text-2xl font-bold text-white text-balance">About</h2>
+    </div>
+
+    <div style="opacity: 1; filter: blur(0px); transform: translateY(-6px) translateZ(0px);">
+      <div class="prose max-w-full text-pretty font-sans text-base md:text-lg lg:text-xl text-white/70 dark:prose-invert">
+        <p class="text-wrap">
+          A finales de 2023, decidí enfocarme completamente en el desarrollo web y soporte IT tras migrar de Cuba a Chile.
+          <a href="#experiencia" class="text-blue-400 hover:text-blue-300 transition-colors">Trabajo en diferentes roles de tecnología</a>, 
+          <a href="#proyectos" class="text-blue-400 hover:text-blue-300 transition-colors">desarrollé múltiples proyectos web modernos</a>, y 
+          <a href="#proyectos" class="text-blue-400 hover:text-blue-300 transition-colors">me especialicé en tecnologías como Astro, Next.js, Python y Node.js</a>. 
+          También tengo experiencia en sistemas de autenticación, bases de datos y deployment en la nube.
+        </p>
+        <p class="mt-4 text-wrap">
+          Mi objetivo es ayudar a empresas a digitalizar sus ideas y crear experiencias web excepcionales.
+        </p>
+            </div>
+          </div>
+
+          <!-- Información adicional de experiencia -->
+          <div class="mt-8 space-y-4" style="opacity: 1; filter: blur(0px); transform: translateY(-6px) translateZ(0px);">
+            <h2 class="text-lg md:text-xl lg:text-2xl font-bold text-white text-balance">
+        +2 Años de experiencia
+            </h2>
+            <p class="text-red-200 text-base md:text-lg lg:text-xl text-wrap">
+        Aquí encontrarás mis proyectos y experiencia. Si quieres colaborar o charlar sobre tecnología, ¡contáctame!
+            </p>
+          </div>
+  </div>
+</section>

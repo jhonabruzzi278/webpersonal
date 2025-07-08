@@ -1,0 +1,139 @@
+---
+// src/components/ProjectCard.astro
+import NextJs from './icons/NextJs.astro';
+import TailwindCSS from './icons/TailwindCSS.astro';
+import Clerk from './icons/Clerk.astro';
+import NodeJs from './icons/NodeJs.astro';
+import Code from './icons/Code.astro';
+import Github from './icons/Github.astro';
+
+const {
+  title,
+  href,
+  github,
+  imageSrc,
+  imageAlt,
+  dateRange,
+  descriptionHTML,
+  techs = [],
+} = Astro.props;
+
+// Función para obtener el nombre display de la tecnología
+const getDisplayName = (tech: string) => {
+  const displayNames: Record<string, string> = {
+    'NEXTJS': 'Next.js',
+    'NEXT.JS': 'Next.js',
+    'TAILWINDCSS': 'Tailwind CSS',
+    'TAILWIND': 'Tailwind',
+    'TAILWIND CSS': 'Tailwind CSS',
+    'ASTRO': 'Astro',
+    'STRIPE': 'Stripe',
+    'CLERK': 'Clerk',
+    'NODEJS': 'Node.js',
+    'NODE.JS': 'Node.js',
+    'EXPRESS': 'Express',
+    'MONGODB': 'MongoDB',
+    'JWT': 'JWT',
+    'TYPESCRIPT': 'TypeScript',
+    'JAVASCRIPT': 'JavaScript',
+    'API': 'API',
+    'REST': 'REST API',
+  };
+  return displayNames[tech.toUpperCase()] || tech;
+};
+---
+
+<div
+  class="rounded-xl bg-white/5 border border-white/10 flex flex-col overflow-hidden hover:bg-white/10 hover:shadow-xl hover:border-white/20 transition-all duration-300 ease-out hover:scale-[1.02] group h-full"
+>
+  <!-- 1. Imagen -->
+  <a href={href} target="_blank" rel="noopener noreferrer" class="group/image">
+    <div class="relative w-full h-52 bg-gradient-to-br from-white/10 to-white/5 overflow-hidden">
+      <img 
+        src={imageSrc} 
+        alt={imageAlt} 
+        class="object-cover w-full h-full transition-transform duration-300 group-hover/image:scale-105" 
+        loading="lazy"
+      />
+      <div class="absolute inset-0 bg-black/20 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300"></div>
+    </div>
+  </a>
+
+  <!-- 2. Contenido -->
+  <div class="flex flex-col px-5 py-4 space-y-3 flex-1">
+    <!-- Título -->
+    <a href={href} target="_blank" rel="noopener noreferrer">
+      <h3 class="font-bold tracking-tight text-lg text-white hover:text-blue-400 transition-colors duration-200 leading-tight">
+        {title}
+      </h3>
+    </a>
+    
+    <!-- Fecha (si existe) -->
+    {dateRange && (
+      <time class="text-sm text-white/50 font-medium">{dateRange}</time>
+    )}
+    
+    <!-- Descripción con prose -->
+    <div class="prose prose-sm prose-invert max-w-none flex-1">
+      <div 
+        class="text-white/70 leading-relaxed text-sm font-normal"
+        set:html={descriptionHTML} 
+      />
+    </div>
+  </div>
+
+  <!-- 3. Tecnologías -->
+  <div class="flex flex-wrap gap-2 px-5 pb-3">
+    {techs.filter((tech: string) => tech.toUpperCase() !== 'STRIPE').map((tech: string) => {
+      const techUpper = tech.toUpperCase();
+      const displayName = getDisplayName(tech);
+      
+      return (
+        <div class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 text-white/80 hover:bg-white/20 transition-all duration-200 px-3 py-1.5 text-xs font-medium">
+          <div class="flex items-center justify-center w-4 h-4">
+            {techUpper === 'ASTRO' && <img src="/astro.svg" alt={displayName} class="w-4 h-4 object-contain" />}
+            {techUpper === 'NEXTJS' && <NextJs class="w-4 h-4" />}
+            {(techUpper === 'TAILWINDCSS' || techUpper === 'TAILWIND' || techUpper === 'TAILWIND CSS') && <TailwindCSS class="w-4 h-4" />}
+            {techUpper === 'CLERK' && <Clerk class="w-4 h-4" />}
+            {(techUpper === 'NODEJS' || techUpper === 'NODE.JS' || techUpper === 'EXPRESS') && <NodeJs class="w-4 h-4" />}
+            {(techUpper === 'MONGODB' || techUpper === 'JWT' || techUpper === 'TYPESCRIPT' || techUpper === 'JAVASCRIPT' || techUpper === 'API' || techUpper === 'REST') && <Code class="w-4 h-4" />}
+          </div>
+          <span class="leading-none">{displayName}</span>
+        </div>
+      );
+    })}
+  </div>
+
+  <!-- 4. Enlaces del proyecto -->
+  <div class="flex items-center justify-between px-5 py-4 border-t border-white/10 bg-white/5">
+    <div class="flex items-center gap-3">
+      <a 
+        target="_blank" 
+        href={href} 
+        rel="noopener noreferrer"
+        class="group inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+      >
+        <div class="flex items-center justify-center w-4 h-4">
+          <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </div>
+        <span>Demo</span>
+      </a>
+      
+      {github && (
+        <a 
+          target="_blank" 
+          href={github} 
+          rel="noopener noreferrer"
+          class="group inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white/80 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-gray-900"
+        >
+          <div class="flex items-center justify-center w-4 h-4">
+            <Github class="w-4 h-4" />
+          </div>
+          <span>Código</span>
+        </a>
+      )}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+---
+// Obtener la URL actual para determinar la página activa
+const currentPath = Astro.url.pathname;
+const isProjectsPage = currentPath === '/proyectos' || currentPath === '/proyectos/';
+---
+
+<header class="flex justify-center items-center py-5 w-full xl:w-[1120px] mx-auto px-4">
+    <nav class="flex flex-wrap gap-x-6 gap-y-2 sm:gap-x-10 opacity-80 text-center justify-center">
+        {isProjectsPage ? (
+            <>
+                <a href="/#top" class="hover:text-blue-400 transition-colors">Inicio</a>
+                <a href="/#sobre-mi" class="hover:text-blue-400 transition-colors">Sobre mí</a>
+                <a href="/#experiencia" class="hover:text-blue-400 transition-colors">Experiencia</a>
+                <a href="/proyectos" class="text-blue-400 font-semibold">Proyectos</a>
+                <a href="/#contacto" class="hover:text-blue-400 transition-colors">Contacto</a>
+            </>
+        ) : (
+            <>
+                <a href="#top" class="hover:text-blue-400 transition-colors">Inicio</a>
+                <a href="#sobre-mi" class="hover:text-blue-400 transition-colors">Sobre mí</a>
+                <a href="#experiencia" class="hover:text-blue-400 transition-colors">Experiencia</a>
+                <a href="#proyectos" class="hover:text-blue-400 transition-colors">Proyectos</a>
+                <a href="#contacto" class="hover:text-blue-400 transition-colors">Contacto</a>
+            </>
+        )}
+    </nav>
+</header>

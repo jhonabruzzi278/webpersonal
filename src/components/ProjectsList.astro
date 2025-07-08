@@ -1,0 +1,25 @@
+---
+// src/components/ProjectsList.astro
+import { getCollection } from 'astro:content';
+import ProjectCard from './ProjectCard.astro';
+
+// Obtener todos los proyectos desde la colección
+const projects = await getCollection('projects');
+
+// Ordenar proyectos por título o fecha si la tienes
+const sortedProjects = projects.sort((a, b) => a.data.title.localeCompare(b.data.title));
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  {sortedProjects.map((project) => (
+    <ProjectCard
+      title={project.data.title}
+      href={project.data.link}
+      github={project.data.github}
+      imageSrc={project.data.image}
+      imageAlt={project.data.title}
+      descriptionHTML={project.body || "Sin descripción disponible"}
+      techs={project.data.tags}
+    />
+  ))}
+</div>
