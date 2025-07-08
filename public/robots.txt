@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://jonathanguerra.dev/sitemap.xml
+
+# Crawl-delay (optional)
+Crawl-delay: 1
