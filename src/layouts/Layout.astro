@@ -2,7 +2,7 @@
 import Header from "../components/Header.astro";
 import "../styles/global.css";
 import "@fontsource-variable/onest";
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
   title?: string;
@@ -17,24 +17,24 @@ const { description, title } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     
-    <!-- SEO Meta Tags -->
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="description" content={description} />
     <meta name="keywords" content="Jonathan Guerra, desarrollador web, programador, portfolio, Astro, Next.js, Node.js, React, TailwindCSS, frontend, backend, desarrollo web" />
     <meta name="author" content="Jonathan Guerra" />
     <meta name="robots" content="index, follow" />
     <meta name="language" content="Spanish" />
     
-    <!-- Viewport -->
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <!-- Favicons y iconos -->
+   
     <link rel="icon" type="image/svg+xml" href="/icono.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/icono.svg" />
     <link rel="icon" type="image/png" sizes="16x16" href="/icono.svg" />
     <link rel="apple-touch-icon" href="/icono.svg" />
     <link rel="mask-icon" href="/icono.svg" color="#000000" />
     
-    <!-- Open Graph / Facebook -->
+   
     <meta property="og:type" content="website" />
     <meta property="og:url" content={Astro.url} />
     <meta property="og:title" content={title} />
@@ -51,17 +51,17 @@ const { description, title } = Astro.props;
     <meta property="twitter:image" content={new URL('/icono.svg', Astro.url)} />
     <meta property="twitter:creator" content="@jonathanguerra278" />
     
-    <!-- Canonical URL -->
+    
     <link rel="canonical" href={Astro.url} />
     
-    <!-- Generator -->
+   
     <meta name="generator" content={Astro.generator} />
     
-    <!-- Theme color -->
+    
     <meta name="theme-color" content="#000000" />
     <meta name="msapplication-TileColor" content="#000000" />
     
-    <!-- JSON-LD Schema -->
+    
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -88,9 +88,9 @@ const { description, title } = Astro.props;
       }
     </script>
     
-    <!-- View Transitions -->
-    <ViewTransitions />
     
+    <ClientRouter />
+
     <title>{title}</title>
   </head>
   <body>
