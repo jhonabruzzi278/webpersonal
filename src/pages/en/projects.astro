@@ -4,55 +4,58 @@ import SectionContainer from "../../components/SectionContainer.astro";
 import ProjectsList from "../../components/ProjectsList.astro";
 import Code from "../../components/icons/Code.astro";
 import Footer from "../../components/Footer.astro";
+import { useTranslations } from '../../utils/i18n';
+
+const t = useTranslations('en');
 ---
 
 <Layout
-  title="Proyectos Web | Jonathan Guerra - Portfolio de Desarrollador"
-  description="Descubre mis proyectos web más destacados: aplicaciones con Astro, Next.js, React y Node.js. Desarrollo frontend y backend con las mejores tecnologías modernas."
+  title={t('meta.projects-title')}
+  description={t('meta.projects-description')}
 >
   <main class="flex flex-col min-h-[100dvh] space-y-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
     <SectionContainer class:list={["py-24 sm:py-44 pb-16 sm:pb-24"]}>
       <div class="mx-auto w-full max-w-4xl space-y-8">
-        <!-- Botón de regreso con animación -->
+        <!-- Back button with animation -->
         <div class="flex justify-start animate-in fade-in slide-in-from-left-5 duration-700">
           <a 
-            href="/"
+            href="/en"
             class="inline-flex items-center gap-2 text-white/80 hover:text-white transition-all duration-300 group bg-white/5 hover:bg-white/10 px-4 py-2 rounded-full border border-white/10 hover:border-white/20"
           >
             <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
             </svg>
-            Volver al inicio
+            {t('projects.back-home')}
           </a>
         </div>
         
-        <!-- Header de la página con animaciones escalonadas -->
+        <!-- Page header with staggered animations -->
         <div class="text-center space-y-6">
           <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white text-balance flex items-center justify-center gap-3 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-200">
             <Code class:list={["size-8 sm:size-10"]} />
-            Echa un vistazo a mi trabajo más reciente
+            Check out my latest work
           </h1>
           <p class="text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto font-medium leading-relaxed animate-in fade-in slide-in-from-bottom-6 duration-700 delay-400">
-            He trabajado en una variedad de proyectos, desde sitios web simples hasta aplicaciones web complejas. 
-            Aquí tienes algunos de mis favoritos, donde aplico las últimas tecnologías web para crear soluciones innovadoras.
+            I have worked on a variety of projects, from simple websites to complex web applications. 
+            Here are some of my favorites, where I apply the latest web technologies to create innovative solutions.
           </p>
         </div>
 
-        <!-- Lista de proyectos con animación -->
+        <!-- Project list with animation -->
         <div class="animate-in fade-in slide-in-from-bottom-8 duration-700 delay-600">
           <ProjectsList />
         </div>
 
-        <!-- Llamada a la acción con animación -->
+        <!-- Call to action with animation -->
         <div class="text-center space-y-4 pt-8 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-800">
           <p class="text-base md:text-lg lg:text-xl text-white/80 font-medium">
-            ¿Interesado en colaborar en un proyecto?
+            {t('projects.cta')}
           </p>
           <a 
             href="mailto:jonathanguerra278@gmail.com"
             class="inline-flex items-center px-6 py-3 text-base md:text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
           >
-            Contactar para proyectos
+            {t('projects.contact')}
           </a>
         </div>
       </div>

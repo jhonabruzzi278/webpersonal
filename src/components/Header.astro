@@ -1,27 +1,57 @@
 ---
-// Obtener la URL actual para determinar la página activa
+import { getLangFromUrl, useTranslations } from '../utils/i18n';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const currentPath = Astro.url.pathname;
-const isProjectsPage = currentPath === '/proyectos' || currentPath === '/proyectos/';
+const isProjectsPage = currentPath === '/proyectos' || currentPath === '/proyectos/' || 
+                      currentPath === '/en/projects' || currentPath === '/en/projects/';
+
+// Helper para generar URLs correctas
+function getLocalizedUrl(targetLang: string, path: string = '') {
+  if (targetLang === 'es') {
+    return path ? `/${path}` : '/';
+  }
+  return path ? `/en/${path}` : '/en';
+}
+
 ---
 
 <header class="flex justify-center items-center py-5 w-full xl:w-[1120px] mx-auto px-4">
     <nav class="flex flex-wrap gap-x-6 gap-y-2 sm:gap-x-10 opacity-80 text-center justify-center">
         {isProjectsPage ? (
             <>
-                <a href="/#top" class="hover:text-blue-400 transition-colors">Inicio</a>
-                <a href="/#sobre-mi" class="hover:text-blue-400 transition-colors">Sobre mí</a>
-                <a href="/#experiencia" class="hover:text-blue-400 transition-colors">Experiencia</a>
-                <a href="/proyectos" class="text-blue-400 font-semibold">Proyectos</a>
+                <a href={getLocalizedUrl(lang, '')} class="hover:text-blue-400 transition-colors">{t('nav.home')}</a>
+                <a href={getLocalizedUrl(lang, '') + '#sobre-mi'} class="hover:text-blue-400 transition-colors">{t('nav.about')}</a>
+                <a href={getLocalizedUrl(lang, '') + '#experiencia'} class="hover:text-blue-400 transition-colors">{t('nav.experience')}</a>
+                <a href={getLocalizedUrl(lang, lang === 'es' ? 'proyectos' : 'projects')} class="text-blue-400 font-semibold">{t('nav.projects')}</a>
                 
             </>
         ) : (
             <>
-                <a href="#top" class="hover:text-blue-400 transition-colors">Inicio</a>
-                <a href="#sobre-mi" class="hover:text-blue-400 transition-colors">Sobre mí</a>
-                <a href="#experiencia" class="hover:text-blue-400 transition-colors">Experiencia</a>
-                <a href="/proyectos" class="hover:text-blue-400 transition-colors">Proyectos</a>
+                <a href="#top" class="hover:text-blue-400 transition-colors">{t('nav.home')}</a>
+                <a href="#sobre-mi" class="hover:text-blue-400 transition-colors">{t('nav.about')}</a>
+                <a href="#experiencia" class="hover:text-blue-400 transition-colors">{t('nav.experience')}</a>
+                <a href={getLocalizedUrl(lang, lang === 'es' ? 'proyectos' : 'projects')} class="hover:text-blue-400 transition-colors">{t('nav.projects')}</a>
                 
             </>
         )}
+        
+        <!-- Language switcher -->
+        <div class="flex gap-2 ml-4">
+            <a 
+                href={getLocalizedUrl('es', '')} 
+                class={`px-2 py-1 rounded text-sm transition-colors ${lang === 'es' ? 'bg-blue-600 text-white' : 'hover:text-blue-400'}`}
+            >
+                ES
+            </a>
+            <a 
+                href={getLocalizedUrl('en', '')} 
+                class={`px-2 py-1 rounded text-sm transition-colors ${lang === 'en' ? 'bg-blue-600 text-white' : 'hover:text-blue-400'}`}
+            >
+                EN
+            </a>
+        </div>
     </nav>
 </header>

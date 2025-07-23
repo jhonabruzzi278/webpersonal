@@ -6,6 +6,11 @@ import Clerk from './icons/Clerk.astro';
 import NodeJs from './icons/NodeJs.astro';
 import Code from './icons/Code.astro';
 import Github from './icons/Github.astro';
+import { getLangFromUrl, useTranslations } from '../utils/i18n';
+
+// Obtener el idioma actual y las traducciones
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const {
   title,
@@ -118,7 +123,7 @@ const getDisplayName = (tech: string) => {
             <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
           </svg>
         </div>
-        <span>Sitio Web</span>
+        <span>{t('projects.site')}</span>
       </a>
       
       {github && (
@@ -131,7 +136,7 @@ const getDisplayName = (tech: string) => {
           <div class="flex items-center justify-center w-4 h-4">
             <Github class="w-4 h-4" />
           </div>
-          <span>Código</span>
+          <span>{t('projects.code')}</span>
         </a>
       )}
     </div>

@@ -2,9 +2,25 @@
 // src/components/ProjectsList.astro
 import { getCollection } from 'astro:content';
 import ProjectCard from './ProjectCard.astro';
+import { getLangFromUrl } from '../utils/i18n';
 
-// Obtener todos los proyectos desde la colección
-const projects = await getCollection('projects');
+// Obtener el idioma actual
+const lang = getLangFromUrl(Astro.url);
+
+// Obtener proyectos filtrados por idioma
+let projects;
+try {
+  projects = await getCollection('projects', ({ id }) => {
+    if (lang === 'es') {
+      return !id.startsWith('en/');
+    } else {
+      return id.startsWith('en/');
+    }
+  });
+} catch (error) {
+  // Fallback a todos los proyectos si hay error
+  projects = await getCollection('projects');
+}
 
 // Ordenar proyectos por título o fecha si la tienes
 const sortedProjects = projects.sort((a, b) => a.data.title.localeCompare(b.data.title));

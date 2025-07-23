@@ -1,7 +1,10 @@
 ---
-// No props necesarios por ahora, puedes añadirlos si quieres personalizar texto o imagen.
 import { Image } from "astro:assets";
 import JonathanPhoto from "../assets/jonathan-photo.jpg";
+import { getLangFromUrl, useTranslations } from '../utils/i18n';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section id="hero">
@@ -14,7 +17,7 @@ import JonathanPhoto from "../assets/jonathan-photo.jpg";
             class="inline-block text-xl sm:text-xl md:text-2xl lg:text-3xl font-bold tracking-tighter text-white text-balance"
             style="opacity:1; filter:blur(0px); transform:translateY(-8px) translateZ(0px);"
           >
-            Hola, soy Jonathan 👋
+            {t('hero.greeting')}
           </span>
         </div>
         <div class="flex">
@@ -22,7 +25,7 @@ import JonathanPhoto from "../assets/jonathan-photo.jpg";
             class="inline-block max-w-[600px] text-base sm:text-lg md:text-xl lg:text-2xl text-white/95 text-wrap font-medium"
             style="opacity:1; filter:blur(0px); transform:translateY(-8px) translateZ(0px);"
           >
-            Desarrollador web y Soporte IT. De Cuba, actualmente en Chile. Me apasiona crear aplicaciones web modernas y eficientes.
+            {t('hero.description')}
           </span>
         </div>
       </div>
@@ -46,20 +49,35 @@ import JonathanPhoto from "../assets/jonathan-photo.jpg";
 <section id="about" class="mt-16">
   <div class="mx-auto w-full max-w-2xl space-y-6">
     <div style="opacity: 1; filter: blur(0px); transform: translateY(-6px) translateZ(0px);">
-      <h2 class="text-lg md:text-xl lg:text-2xl font-bold text-white text-balance">Sobre mí</h2>
+      <h2 class="text-lg md:text-xl lg:text-2xl font-bold text-white text-balance">{t('about.title')}</h2>
     </div>
 
     <div style="opacity: 1; filter: blur(0px); transform: translateY(-6px) translateZ(0px);">
       <div class="prose max-w-full text-pretty font-sans text-base md:text-lg lg:text-xl text-white/70 dark:prose-invert">
         <p class="text-wrap">
-          A finales de 2023, decidí enfocarme completamente en el desarrollo web y soporte IT tras migrar de Cuba a Chile.
-          <a href="#experiencia" class="text-blue-400 hover:text-blue-300 transition-colors">Trabajo en diferentes roles de tecnología</a>, 
-          <a href="#proyectos" class="text-blue-400 hover:text-blue-300 transition-colors">desarrollo múltiples proyectos web modernos, y</a> 
-          <a href="#proyectos" class="text-blue-400 hover:text-blue-300 transition-colors">me especializo en tecnologías como Astro, Next.js, Python y Node.js</a>. 
-          También tengo experiencia en sistemas de autenticación, bases de datos y despliegues en la nube.
+          {lang === 'es' ? (
+            <>
+              A finales de 2023, decidí enfocarme completamente en el desarrollo web y soporte IT tras migrar de Cuba a Chile.
+              <a href="#experiencia" class="text-blue-400 hover:text-blue-300 transition-colors"> Trabajo en diferentes roles de tecnología</a>, 
+              <a href="#proyectos" class="text-blue-400 hover:text-blue-300 transition-colors"> desarrollo múltiples proyectos web modernos, y</a> 
+              <a href="#proyectos" class="text-blue-400 hover:text-blue-300 transition-colors"> me especializo en tecnologías como Astro, Next.js, Python y Node.js</a>. 
+              También tengo experiencia en sistemas de autenticación, bases de datos y despliegues en la nube.
+            </>
+          ) : (
+            <>
+              At the end of 2023, I decided to focus completely on web development and IT support after migrating from Cuba to Chile.
+              <a href="#experiencia" class="text-blue-400 hover:text-blue-300 transition-colors"> I work in different technology roles</a>, 
+              <a href="#proyectos" class="text-blue-400 hover:text-blue-300 transition-colors"> develop multiple modern web projects, and</a> 
+              <a href="#proyectos" class="text-blue-400 hover:text-blue-300 transition-colors"> specialize in technologies like Astro, Next.js, Python and Node.js</a>. 
+              I also have experience in authentication systems, databases and cloud deployments.
+            </>
+          )}
         </p>
         <p class="mt-4 text-wrap">
-          Mi objetivo es ayudar a empresas a digitalizar sus ideas y crear experiencias web excepcionales.
+          {lang === 'es' 
+            ? 'Mi objetivo es ayudar a empresas a digitalizar sus ideas y crear experiencias web excepcionales.'
+            : 'My goal is to help companies digitize their ideas and create exceptional web experiences.'
+          }
         </p>
             </div>
           </div>
@@ -67,10 +85,10 @@ import JonathanPhoto from "../assets/jonathan-photo.jpg";
           <!-- Información adicional de experiencia -->
           <div class="mt-8 space-y-4" style="opacity: 1; filter: blur(0px); transform: translateY(-6px) translateZ(0px);">
             <h2 class="text-lg md:text-xl lg:text-2xl font-bold text-white text-balance">
-        +2 Años de experiencia
+        {t('hero.years')}
             </h2>
             <p class="text-red-200 text-base md:text-lg lg:text-xl text-wrap">
-        Aquí encontrarás mis proyectos y experiencia. Si quiere colaborar o charlar sobre tecnología, ¡contácteme!
+        {t('hero.cta')}
             </p>
           </div>
   </div>

@@ -1,7 +1,11 @@
 ---
 import ExperienceItem from "./ExperienceItem.astro"
+import { getLangFromUrl, useTranslations } from '../utils/i18n';
 
-const EXPERIENCE = [
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const EXPERIENCE = lang === 'es' ? [
     {
         date: 'Enero 2024 - Presente',
         title: 'Soporte IT - Empresa CasChile S.A.',
@@ -16,7 +20,22 @@ const EXPERIENCE = [
         'Desarrollo de aplicaciones web personalizadas para clientes, utilizando tecnologías modernas como Astro, HTML, CSS, JavaScript y bases de datos SQL.',
         link: '#',
     },
-]
+] : [
+    {
+        date: 'January 2024 - Present',
+        title: 'IT Support - CasChile S.A. Company',
+        description:
+        'Responsible for providing technical support to company employees, solving problems related to hardware and software.',
+        link: '#',
+    },
+    {
+        date: 'January 2024 - present',
+        title: 'Freelance Web Developer',
+        description:
+        'Development of custom web applications for clients, using modern technologies such as Astro, HTML, CSS, JavaScript and SQL databases.',
+        link: '#',
+    },
+];
 ---
 
 

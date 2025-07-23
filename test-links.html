@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Links - Portfolio Jonathan</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            background: #1a1a1a; 
+            color: white; 
+        }
+        .test-section { 
+            margin: 20px 0; 
+            padding: 15px; 
+            border: 1px solid #333; 
+            border-radius: 8px; 
+        }
+        .test-link { 
+            color: #60a5fa; 
+            text-decoration: none; 
+            margin: 10px; 
+            display: inline-block; 
+            padding: 8px 12px; 
+            border: 1px solid #60a5fa; 
+            border-radius: 4px; 
+        }
+        .test-link:hover { 
+            background: #60a5fa; 
+            color: white; 
+        }
+        h1, h2 { color: #60a5fa; }
+    </style>
+</head>
+<body>
+    <h1>🔗 Test de Links y Navegación</h1>
+    
+    <div class="test-section">
+        <h2>📝 Links Principales (Español)</h2>
+        <a href="http://localhost:4321/" class="test-link" target="_blank">🏠 Página Principal (ES)</a>
+        <a href="http://localhost:4321/proyectos" class="test-link" target="_blank">💼 Proyectos (ES)</a>
+    </div>
+    
+    <div class="test-section">
+        <h2>🌍 Links en Inglés</h2>
+        <a href="http://localhost:4321/en/" class="test-link" target="_blank">🏠 Homepage (EN)</a>
+        <a href="http://localhost:4321/en/projects" class="test-link" target="_blank">💼 Projects (EN)</a>
+    </div>
+    
+    <div class="test-section">
+        <h2>🔧 Links de Secciones (Hash)</h2>
+        <a href="http://localhost:4321/#sobre-mi" class="test-link" target="_blank">👨‍💻 Sobre mí</a>
+        <a href="http://localhost:4321/#experiencia" class="test-link" target="_blank">💼 Experiencia</a>
+        <a href="http://localhost:4321/#proyectos" class="test-link" target="_blank">🚀 Proyectos</a>
+    </div>
+    
+    <div class="test-section">
+        <h2>✅ Checklist de Funcionalidad</h2>
+        <p>✓ Navegación entre idiomas (ES ↔ EN)</p>
+        <p>✓ Links de navegación interna (#sobre-mi, #experiencia)</p>
+        <p>✓ Botón "Ver todos los proyectos"</p>
+        <p>✓ Links de proyectos individuales</p>
+        <p>✓ Enlaces de redes sociales</p>
+    </div>
+    
+    <div class="test-section">
+        <h2>🐛 Problemas Solucionados</h2>
+        <ul>
+            <li>✅ Función <code>getLangFromUrl</code> ahora maneja la ruta raíz correctamente</li>
+            <li>✅ Reemplazado <code>getRelativeLocaleUrl</code> con función personalizada <code>getLocalizedUrl</code></li>
+            <li>✅ Filtrado de proyectos por idioma en <code>ProjectsList</code> y <code>Proyects</code></li>
+            <li>✅ Enlace "Ver todos los proyectos" ahora funciona correctamente</li>
+            <li>✅ Selector de idiomas (ES/EN) funcional</li>
+        </ul>
+    </div>
+    
+    <div class="test-section">
+        <h2>🎯 Instrucciones de Prueba</h2>
+        <ol>
+            <li>Haz clic en cada link para verificar que funciona</li>
+            <li>Prueba el cambio de idiomas (ES/EN)</li>
+            <li>Verifica que la navegación interna funciona</li>
+            <li>Comprueba que los proyectos se cargan correctamente</li>
+        </ol>
+    </div>
+</body>
+</html>

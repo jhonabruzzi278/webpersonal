@@ -1,5 +1,21 @@
 ---
 // src/components/EducationList.astro
+import { getLangFromUrl, useTranslations } from '../utils/i18n';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const education = lang === 'es' ? {
+  institution: 'Duoc UC',
+  period: '2024 – presente',
+  degree: 'Técnico en Informática y Telecomunicaciones',
+  specialization: 'Especialización en desarrollo de software'
+} : {
+  institution: 'Duoc UC',
+  period: '2024 – present',
+  degree: 'Technician in Computer Science and Telecommunications',
+  specialization: 'Specialization in software development'
+};
 ---
 
 <div class="flex min-h-0 flex-col gap-y-3">
@@ -30,7 +46,7 @@
           <div class="flex flex-col w-full">
             <div class="flex items-center justify-between gap-x-2 text-base w-full">
               <h3 class="inline-flex items-center justify-center font-semibold leading-none text-sm md:text-base lg:text-lg text-white">
-                Duoc UC
+                {education.institution}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -47,14 +63,14 @@
                 </svg>
               </h3>
               <div class="text-xs md:text-sm lg:text-base tabular-nums text-white/60 text-right">
-                2024 – presente
+                {education.period}
               </div>
             </div>
             <div class="font-sans text-xs md:text-sm lg:text-base text-white/70">
-              Técnico en Informática y Telecomunicaciones
+              {education.degree}
             </div>
             <div class="font-sans text-xs md:text-sm text-white/50 mt-1">
-              Especialización en desarrollo de software 
+              {education.specialization}
             </div>
           </div>
         </div>

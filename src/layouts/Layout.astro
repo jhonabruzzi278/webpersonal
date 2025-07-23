@@ -3,26 +3,35 @@ import Header from "../components/Header.astro";
 import "../styles/global.css";
 import "@fontsource-variable/onest";
 import { ClientRouter } from "astro:transitions";
+import { getLangFromUrl } from '../utils/i18n';
 
 interface Props {
   title?: string;
   description?: string;
 }
 
+const currentLang = Astro.currentLocale || "es";
+const lang = getLangFromUrl(Astro.url);
 const { description, title } = Astro.props;
+
+const keywords = lang === 'es' 
+  ? "Jonathan Guerra, desarrollador web, programador, portfolio, Astro, Next.js, Node.js, React, TailwindCSS, frontend, backend, desarrollo web"
+  : "Jonathan Guerra, web developer, programmer, portfolio, Astro, Next.js, Node.js, React, TailwindCSS, frontend, backend, web development";
+
+const language = lang === 'es' ? 'Spanish' : 'English';
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={currentLang}>
   <head>
     <meta charset="UTF-8" />
     
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="description" content={description} />
-    <meta name="keywords" content="Jonathan Guerra, desarrollador web, programador, portfolio, Astro, Next.js, Node.js, React, TailwindCSS, frontend, backend, desarrollo web" />
+    <meta name="keywords" content={keywords} />
     <meta name="author" content="Jonathan Guerra" />
     <meta name="robots" content="index, follow" />
-    <meta name="language" content="Spanish" />
+    <meta name="language" content={language} />
     
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -40,8 +49,8 @@ const { description, title } = Astro.props;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL('/icono.svg', Astro.url)} />
-    <meta property="og:site_name" content="Jonathan Guerra - Desarrollador Web" />
-    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content={lang === 'es' ? 'Jonathan Guerra - Desarrollador Web' : 'Jonathan Guerra - Web Developer'} />
+    <meta property="og:locale" content={lang === 'es' ? 'es_ES' : 'en_US'} />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
@@ -67,8 +76,11 @@ const { description, title } = Astro.props;
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Jonathan Guerra",
-        "jobTitle": "Desarrollador Web",
-        "description": "Desarrollador web especializado en Astro, Next.js y Node.js con más de 2 años de experiencia",
+        "jobTitle": {lang === 'es' ? 'Desarrollador Web' : 'Web Developer'},
+        "description": {lang === 'es' 
+          ? 'Desarrollador web especializado en Astro, Next.js y Node.js con más de 2 años de experiencia'
+          : 'Web developer specialized in Astro, Next.js and Node.js with over 2 years of experience'
+        },
         "url": "https://jonathanguerra.com",
         "sameAs": [
           "https://www.linkedin.com/in/jonathan-guerra-cruz-725b50361/",
