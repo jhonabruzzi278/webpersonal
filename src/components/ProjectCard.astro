@@ -6,7 +6,7 @@ import Clerk from './icons/Clerk.astro';
 import NodeJs from './icons/NodeJs.astro';
 import Code from './icons/Code.astro';
 import Github from './icons/Github.astro';
-import { getLangFromUrl, useTranslations } from '../utils/i18n';
+import { getLangFromUrl, useTranslations } from '../utils/i18n.ts';
 
 // Obtener el idioma actual y las traducciones
 const lang = getLangFromUrl(Astro.url);

@@ -1,6 +1,6 @@
 ---
 // src/components/EducationList.astro
-import { getLangFromUrl, useTranslations } from '../utils/i18n';
+import { getLangFromUrl, useTranslations } from '../utils/i18n.ts';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);

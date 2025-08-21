@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import ProjectCard from "./ProjectCard.astro";
-import { getLangFromUrl, useTranslations } from '../utils/i18n';
+import { getLangFromUrl, useTranslations } from '../utils/i18n.ts';
 
 // Obtener el idioma actual
 const lang = getLangFromUrl(Astro.url);
