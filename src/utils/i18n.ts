@@ -13,7 +13,7 @@ export const ui = {
     'nav.experience': 'Experiencia',
     'nav.projects': 'Proyectos',
     'nav.education': 'Educación',
-    'hero.greeting': 'Hola, soy Jonathan 👋',
+    'hero.greeting': 'Hola, soy Pedro 👋',
     'hero.description': 'Desarrollador web y Soporte IT. De Cuba, actualmente en Chile. Me apasiona crear aplicaciones web modernas y eficientes.',
     'hero.years': '+2 Años de experiencia',
     'hero.cta': 'Aquí encontrarás mis proyectos y experiencia. Si quiere colaborar o charlar sobre tecnología, ¡contácteme!',
