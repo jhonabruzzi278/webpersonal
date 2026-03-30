@@ -2,8 +2,7 @@
 import Header from "../components/Header.astro";
 import "../styles/global.css";
 import "@fontsource-variable/onest";
-import { ClientRouter } from "astro:transitions";
-import { getLangFromUrl } from '../utils/i18n.ts';
+import { getLangFromUrl } from '../utils/i18n';
 
 interface Props {
   title?: string;
@@ -101,8 +100,6 @@ const language = lang === 'es' ? 'Spanish' : 'English';
     </script>
     
     
-    <ClientRouter />
-
     <title>{title}</title>
   </head>
   <body>

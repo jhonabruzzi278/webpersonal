@@ -111,18 +111,18 @@ body {
   
   /* Párrafos con mejor contraste */
   p {
-    color: #e5e5e5;
+    color: #b0b0b0; /* Mejor contraste WCAG AA */
     font-size: 1rem;
     line-height: 1.7;
   }
   
   /* Textos secundarios más contrastados */
   .text-white\/70 {
-    color: rgba(255, 255, 255, 0.85) !important;
+    color: #b3b3b3 !important; /* Mejor contraste WCAG AA */
   }
   
   .text-white\/60 {
-    color: rgba(255, 255, 255, 0.8) !important;
+    color: #8c8c8c !important; /* Mejor contraste WCAG AA */
   }
   
   /* Enlaces más visibles */
