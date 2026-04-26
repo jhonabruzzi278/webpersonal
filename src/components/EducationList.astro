@@ -1,9 +1,8 @@
 ---
 // src/components/EducationList.astro
-import { getLangFromUrl, useTranslations } from '../utils/i18n.ts';
+import { getLangFromUrl } from '../utils/i18n.ts';
 
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
 
 const education = lang === 'es' ? {
   institution: 'Duoc UC',

@@ -1,31 +1,14 @@
 ---
-import { getCollection } from "astro:content";
 import ProjectCard from "./ProjectCard.astro";
 import { getLangFromUrl, useTranslations } from '../utils/i18n.ts';
+import { getFeaturedProject, getProjectsByLang } from '../utils/projects.ts';
 
 // Obtener el idioma actual
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-// Obtener proyectos filtrados por idioma
-let allProjects;
-try {
-  allProjects = await getCollection("projects", ({ id }) => {
-    if (lang === 'es') {
-      return !id.startsWith('en/');
-    } else {
-      return id.startsWith('en/');
-    }
-  });
-} catch (error) {
-  // Fallback a todos los proyectos si hay error
-  allProjects = await getCollection("projects");
-}
-
-// Filtrar para mostrar solo el proyecto de la clínica dentista
-const featuredProject = allProjects.filter(
-  (project) => project.slug === "clinica-dentista" || project.slug === "en/clinica-dentista"
-)[0];
+const allProjects = await getProjectsByLang(lang);
+const featuredProject = getFeaturedProject(allProjects, "clinica-dentista");
 ---
 
 <div class="flex flex-col gap-y-8">

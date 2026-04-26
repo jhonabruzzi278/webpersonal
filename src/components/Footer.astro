@@ -1,8 +1,7 @@
 ---
-import { getLangFromUrl, useTranslations } from '../utils/i18n.ts';
+import { getLangFromUrl } from '../utils/i18n.ts';
 
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
 
 // Helper para generar URLs correctas
 function getLocalizedUrl(targetLang: string, path: string = '') {
@@ -13,10 +12,9 @@ function getLocalizedUrl(targetLang: string, path: string = '') {
 }
 
 const footerText = lang === 'es' 
-  ? '© 2025 Desarrollado con ❤️ por' 
-  : '© 2025 Crafted with ❤️ by';
+  ? '© 2025 Desarrollado x Jonathan Guerra' 
+  : '© 2025 Crafted x Jonathan Guerra';
 
-const contactText = lang === 'es' ? 'Contacto' : 'Contact';
 ---
 
 <footer class="mt-16 py-8">

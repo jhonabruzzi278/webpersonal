@@ -2,7 +2,7 @@
 import Header from "../components/Header.astro";
 import "../styles/global.css";
 import "@fontsource-variable/onest";
-import { getLangFromUrl } from '../utils/i18n';
+import { getLangFromUrl } from '../utils/i18n.ts';
 
 interface Props {
   title?: string;
@@ -18,6 +18,33 @@ const keywords = lang === 'es'
   : "Jonathan Guerra, web developer, programmer, portfolio, Astro, Next.js, Node.js, React, TailwindCSS, frontend, backend, web development";
 
 const language = lang === 'es' ? 'Spanish' : 'English';
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Jonathan Guerra",
+  jobTitle: lang === 'es' ? 'Desarrollador Web' : 'Web Developer',
+  description:
+    lang === 'es'
+      ? 'Desarrollador web especializado en Astro, Next.js y Node.js con mas de 2 anos de experiencia'
+      : 'Web developer specialized in Astro, Next.js and Node.js with over 2 years of experience',
+  url: 'https://jonathanguerra.com',
+  sameAs: [
+    'https://www.linkedin.com/in/jonathan-guerra-cruz-725b50361/',
+    'https://github.com/jhonabruzzi278',
+  ],
+  knowsAbout: [
+    'JavaScript',
+    'TypeScript',
+    'React',
+    'Astro',
+    'Next.js',
+    'Node.js',
+    'TailwindCSS',
+    'Desarrollo Web Frontend',
+    'Desarrollo Web Backend',
+  ],
+};
 ---
 
 <!doctype html>
@@ -70,34 +97,7 @@ const language = lang === 'es' ? 'Spanish' : 'English';
     <meta name="msapplication-TileColor" content="#000000" />
     
     
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Jonathan Guerra",
-        "jobTitle": {lang === 'es' ? 'Desarrollador Web' : 'Web Developer'},
-        "description": {lang === 'es' 
-          ? 'Desarrollador web especializado en Astro, Next.js y Node.js con más de 2 años de experiencia'
-          : 'Web developer specialized in Astro, Next.js and Node.js with over 2 years of experience'
-        },
-        "url": "https://jonathanguerra.com",
-        "sameAs": [
-          "https://www.linkedin.com/in/jonathan-guerra-cruz-725b50361/",
-          "https://github.com/jhonabruzzi278"
-        ],
-        "knowsAbout": [
-          "JavaScript",
-          "TypeScript",
-          "React",
-          "Astro",
-          "Next.js",
-          "Node.js",
-          "TailwindCSS",
-          "Desarrollo Web Frontend",
-          "Desarrollo Web Backend"
-        ]
-      }
-    </script>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
     
     
     <title>{title}</title>
