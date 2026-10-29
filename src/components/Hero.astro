@@ -2,9 +2,15 @@
 import { Image } from "astro:assets";
 import JonathanPhoto from "../assets/jonathan-photo.jpg";
 import { getLangFromUrl, useTranslations } from '../utils/i18n.ts';
+import { SHOW_PROJECTS } from '../features.ts';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+// Sin la sección de proyectos, estas frases quedan como texto normal
+const projectsLink = SHOW_PROJECTS
+  ? { href: '#proyectos', class: 'text-blue-400 hover:text-blue-300 transition-colors' }
+  : {};
 ---
 
 <section id="hero">
@@ -59,16 +65,16 @@ const t = useTranslations(lang);
             <>
               A finales de 2023, decidí enfocarme completamente en el desarrollo web y soporte IT tras migrar de Cuba a Chile.
               <a href="#experiencia" class="text-blue-400 hover:text-blue-300 transition-colors"> Trabajo en diferentes roles de tecnología</a>, 
-              <a href="#proyectos" class="text-blue-400 hover:text-blue-300 transition-colors"> desarrollo múltiples proyectos web modernos, y</a> 
-              <a href="#proyectos" class="text-blue-400 hover:text-blue-300 transition-colors"> me especializo en tecnologías como Astro, Next.js, Python y Node.js</a>. 
+              <a {...projectsLink}> desarrollo múltiples proyectos web modernos, y</a> 
+              <a {...projectsLink}> me especializo en tecnologías como Astro, Next.js, Python y Node.js</a>. 
               También tengo experiencia en sistemas de autenticación, bases de datos y despliegues en la nube.
             </>
           ) : (
             <>
               At the end of 2023, I decided to focus completely on web development and IT support after migrating from Cuba to Chile.
               <a href="#experiencia" class="text-blue-400 hover:text-blue-300 transition-colors"> I work in different technology roles</a>, 
-              <a href="#proyectos" class="text-blue-400 hover:text-blue-300 transition-colors"> develop multiple modern web projects, and</a> 
-              <a href="#proyectos" class="text-blue-400 hover:text-blue-300 transition-colors"> specialize in technologies like Astro, Next.js, Python and Node.js</a>. 
+              <a {...projectsLink}> develop multiple modern web projects, and</a> 
+              <a {...projectsLink}> specialize in technologies like Astro, Next.js, Python and Node.js</a>. 
               I also have experience in authentication systems, databases and cloud deployments.
             </>
           )}

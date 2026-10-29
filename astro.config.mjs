@@ -7,6 +7,8 @@ import mdx from '@astrojs/mdx';
 
 import sitemap from '@astrojs/sitemap';
 
+import { SHOW_PROJECTS } from './src/features.ts';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.jonathanguerra.com',
@@ -22,5 +24,10 @@ export default defineConfig({
       prefixDefaultLocale: false
     }
   },
-  integrations: [mdx(), sitemap()]
+  integrations: [
+    mdx(),
+    sitemap({
+      filter: (page) => SHOW_PROJECTS || !/\/(proyectos|en\/projects)\/$/.test(page),
+    }),
+  ]
 });

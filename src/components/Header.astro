@@ -1,5 +1,6 @@
 ---
 import { getLangFromUrl, useTranslations } from '../utils/i18n.ts';
+import { SHOW_PROJECTS } from '../features.ts';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -25,7 +26,7 @@ function getLocalizedUrl(targetLang: string, path: string = '') {
                 <a href={getLocalizedUrl(lang, '')} class="hover:text-blue-400 transition-colors">{t('nav.home')}</a>
                 <a href={getLocalizedUrl(lang, '') + '#sobre-mi'} class="hover:text-blue-400 transition-colors">{t('nav.about')}</a>
                 <a href={getLocalizedUrl(lang, '') + '#experiencia'} class="hover:text-blue-400 transition-colors">{t('nav.experience')}</a>
-                <a href={getLocalizedUrl(lang, lang === 'es' ? 'proyectos' : 'projects')} class="text-blue-400 font-semibold">{t('nav.projects')}</a>
+                {SHOW_PROJECTS && <a href={getLocalizedUrl(lang, lang === 'es' ? 'proyectos' : 'projects')} class="text-blue-400 font-semibold">{t('nav.projects')}</a>}
                 
             </>
         ) : (
@@ -33,7 +34,7 @@ function getLocalizedUrl(targetLang: string, path: string = '') {
                 <a href="#top" class="hover:text-blue-400 transition-colors">{t('nav.home')}</a>
                 <a href="#sobre-mi" class="hover:text-blue-400 transition-colors">{t('nav.about')}</a>
                 <a href="#experiencia" class="hover:text-blue-400 transition-colors">{t('nav.experience')}</a>
-                <a href={getLocalizedUrl(lang, lang === 'es' ? 'proyectos' : 'projects')} class="hover:text-blue-400 transition-colors">{t('nav.projects')}</a>
+                {SHOW_PROJECTS && <a href={getLocalizedUrl(lang, lang === 'es' ? 'proyectos' : 'projects')} class="hover:text-blue-400 transition-colors">{t('nav.projects')}</a>}
                 
             </>
         )}
