@@ -17,7 +17,7 @@ export function getFeaturedProject(
   slug: string,
 ) {
   return projects.find((project) => {
-    const normalized = project.slug.replace(/^en\//, "");
+    const normalized = project.id.replace(/^en\//, "");
     return normalized === slug;
   });
 }
