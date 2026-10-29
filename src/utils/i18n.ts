@@ -45,7 +45,7 @@ export const ui = {
     'nav.projects': 'Projects',
     'nav.education': 'Education',
     'hero.greeting': 'Hello, I\'m Jonathan 👋',
-    'hero.description': 'Web Developer & IT Support specialist from Cuba, now based in Chile. I\'m passionate about dev modern, efficient web applications that make a difference.',
+    'hero.description': 'Web Developer & IT Support specialist from Cuba, now based in Chile. I\'m passionate about building modern, efficient web applications that make a difference.',
     'hero.years': '2+ Years of Experience',
     'hero.cta': 'Here you\'ll discover my projects and professional journey. Looking to collaborate or discuss tech? Let\'s connect!',
     'about.title': 'About Me',

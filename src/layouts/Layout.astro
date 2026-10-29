@@ -26,9 +26,9 @@ const personSchema = {
   jobTitle: lang === 'es' ? 'Desarrollador Web' : 'Web Developer',
   description:
     lang === 'es'
-      ? 'Desarrollador web especializado en Astro, Next.js y Node.js con mas de 2 anos de experiencia'
+      ? 'Desarrollador web especializado en Astro, Next.js y Node.js con más de 2 años de experiencia'
       : 'Web developer specialized in Astro, Next.js and Node.js with over 2 years of experience',
-  url: 'https://jonathanguerra.com',
+  url: Astro.site?.href,
   sameAs: [
     'https://www.linkedin.com/in/jonathan-guerra-cruz-725b50361/',
     'https://github.com/jhonabruzzi278',
@@ -41,8 +41,8 @@ const personSchema = {
     'Next.js',
     'Node.js',
     'TailwindCSS',
-    'Desarrollo Web Frontend',
-    'Desarrollo Web Backend',
+    lang === 'es' ? 'Desarrollo Web Frontend' : 'Frontend Web Development',
+    lang === 'es' ? 'Desarrollo Web Backend' : 'Backend Web Development',
   ],
 };
 ---
@@ -64,8 +64,6 @@ const personSchema = {
     
    
     <link rel="icon" type="image/svg+xml" href="/icono.svg" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/icono.svg" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/icono.svg" />
     <link rel="apple-touch-icon" href="/icono.svg" />
     <link rel="mask-icon" href="/icono.svg" color="#000000" />
     

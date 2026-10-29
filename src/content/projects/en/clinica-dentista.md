@@ -1,7 +1,7 @@
 ---
 title: "Dental Clinic Linda Sonrisa"
 link: "https://clinicalindasonrisa.com"
-github: "https://github.com/jhonabruzzi278/clinica-dentista"
+github: "https://github.com/jhonabruzzi278/clinica"
 image: "/projects/clinica-dentista-preview.webp"
 tags: ["ASTRO", "TAILWINDCSS", "NODEJS"]
 ---

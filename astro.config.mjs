@@ -9,7 +9,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://jonathanguerra.com',
+  site: 'https://www.jonathanguerra.com',
   // Astro 7 cambió el valor por defecto a 'jsx', que elimina espacios entre texto y enlaces
   compressHTML: true,
   vite: {
