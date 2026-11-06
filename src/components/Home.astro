@@ -37,21 +37,6 @@ const socials = [
 
 <main class="link-hub">
   <div class="hub-shell">
-    <header class="hub-top">
-      <div class="hub-identity">
-        <span class="hub-brand" aria-hidden="true">JG<span>✳</span></span>
-        <div class="hub-identity-copy">
-          <span class="hub-eyebrow">JG <span aria-hidden="true">/</span> {es ? 'ESPACIO DIGITAL' : 'DIGITAL SPACE'}</span>
-          <strong>{es ? 'Webs y recursos digitales' : 'Websites and digital resources'}</strong>
-        </div>
-      </div>
-      <a class="hub-top-contact" href="mailto:jonathanguerra278@gmail.com" aria-label={es ? 'Escribir a Jonathan por correo' : 'Email Jonathan'}>
-        <span class="contact-dot" aria-hidden="true"></span>
-        <span>{es ? 'HABLEMOS' : 'LET’S TALK'}</span>
-        <span class="contact-arrow" aria-hidden="true">↗</span>
-      </a>
-    </header>
-
     <div class="tech-banner" aria-label={es ? 'Tecnologías y herramientas: AWS, Microsoft Azure, Google Cloud, Astro, Claude Code, Supabase y Vercel' : 'Technologies and tools: AWS, Microsoft Azure, Google Cloud, Astro, Claude Code, Supabase and Vercel'}>
       <div class="tech-track" aria-hidden="true">
         {[0, 1].map(() => <div class="tech-group">{technologies.map(tech => (
@@ -105,20 +90,8 @@ const socials = [
 </main>
 
 <style>
-  .link-hub { min-height: 100dvh; padding: 22px 20px 30px; overflow-x: hidden; color: var(--ink); background-color: var(--paper); background-image: radial-gradient(rgb(13 11 20 / .12) 1.2px, transparent 1.5px); background-size: 24px 24px; }
+  .link-hub { min-height: 100dvh; padding: 0 20px 30px; overflow-x: hidden; color: var(--ink); background-color: var(--paper); background-image: radial-gradient(rgb(13 11 20 / .12) 1.2px, transparent 1.5px); background-size: 24px 24px; }
   .hub-shell { width: min(100%, 580px); margin-inline: auto; }
-  .hub-top { min-height: 88px; display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 22px; padding: 12px 14px; background: #fff; border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); }
-  .hub-identity { display: flex; align-items: center; gap: 15px; min-width: 0; }
-  .hub-brand { width: 54px; height: 54px; flex: none; display: grid; place-items: center; position: relative; background: var(--ink); color: var(--lilac); font: 800 21px var(--font-mono); letter-spacing: -.09em; transform: rotate(-5deg); }
-  .hub-brand span { position: absolute; font-size: 19px; color: #ffe066; right: -10px; top: -14px; transform: rotate(5deg); }
-  .hub-identity-copy { display: grid; gap: 3px; min-width: 0; }
-  .hub-eyebrow { color: var(--ink-soft); font: 800 10px var(--font-mono); letter-spacing: .04em; white-space: nowrap; }
-  .hub-eyebrow span { color: var(--lilac-strong); }
-  .hub-identity-copy strong { font-size: 18px; line-height: 1.05; letter-spacing: -.05em; }
-  .hub-top-contact { display: inline-flex; align-items: center; gap: 8px; flex: none; padding: 11px 12px; background: var(--lilac); border: 2px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); text-decoration: none; font: 800 11px var(--font-mono); white-space: nowrap; transition: transform .15s, box-shadow .15s; }
-  .hub-top-contact:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--ink); }
-  .contact-dot { width: 8px; height: 8px; flex: none; border-radius: 50%; background: #2bc47d; border: 1px solid var(--ink); }
-  .contact-arrow { font-size: 18px; line-height: .6; }
   .tech-banner { width: 100vw; position: relative; left: 50%; transform: translateX(-50%); margin: 0 0 30px; overflow: hidden; background: var(--ink); color: #fff; border-block: 3px solid var(--ink); }
   .tech-track { width: max-content; display: flex; animation: tech-scroll 26s linear infinite; }
   .tech-group { display: flex; flex: none; }
@@ -155,15 +128,7 @@ const socials = [
   .email { text-align: center; font: 700 12px var(--font-mono); margin: 18px 0 30px; overflow-wrap: anywhere; }
   footer { text-align: center; border-top: 2px solid var(--ink); padding-top: 16px; font: 700 10px var(--font-mono); color: var(--ink-soft); }
   @media (max-width: 480px) {
-    .link-hub { padding: 17px 19px 28px; }
-    .hub-top { min-height: 77px; padding: 10px; gap: 8px; box-shadow: 4px 4px 0 var(--ink); }
-    .hub-identity { gap: 9px; }
-    .hub-brand { width: 43px; height: 43px; font-size: 17px; }
-    .hub-brand span { font-size: 15px; right: -8px; top: -11px; }
-    .hub-eyebrow { font-size: 8px; }
-    .hub-identity-copy strong { font-size: 14px; }
-    .hub-top-contact { padding: 9px; font-size: 10px; }
-    .hub-top-contact .contact-dot { display: none; }
+    .link-hub { padding: 0 19px 28px; }
     .tech-banner { margin-bottom: 24px; }
     .tech-item { padding: 8px 17px; font-size: 11px; }
     .avatar-wrap, .avatar { width: 192px; height: 192px; }
