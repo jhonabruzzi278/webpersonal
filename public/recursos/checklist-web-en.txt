@@ -1,0 +1,25 @@
+WEBSITE LAUNCH CHECKLIST
+Jonathan Guerra · jonathanguerra278@gmail.com
+
+CONTENT
+[ ] The main offer is clear on the first screen.
+[ ] Each page has a clear title and next action.
+[ ] Contact details, links and opening hours are current.
+[ ] Copy and spelling have been reviewed.
+
+FUNCTIONALITY
+[ ] Every link and button opens the correct destination.
+[ ] Forms have been tested from start to finish.
+[ ] The site works with a keyboard and has visible focus.
+[ ] Images and buttons have accessible names or text.
+
+MOBILE AND SPEED
+[ ] I checked the site on small and large screens.
+[ ] Nothing is clipped or causes horizontal scrolling.
+[ ] Images are compressed and load quickly.
+
+PUBLISHING
+[ ] Each page has a search title and description.
+[ ] The domain and HTTPS work.
+[ ] The 404 page and social links work.
+[ ] I tested the published site one final time.

@@ -1,175 +1,24 @@
 @import "tailwindcss";
 
-/* Configuración de fuente Onest */
 :root {
-  font-family: "Onest Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-synthesis: weight style;
+  --ink: #0d0b14;
+  --ink-soft: #3a3550;
+  --paper: #f3ecff;
+  --paper-2: #e7dcff;
+  --lilac: #c8b4ff;
+  --lilac-strong: #a98bff;
+  --font-sans: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+  font-family: var(--font-sans);
+  color: var(--ink);
+  background: var(--paper);
 }
 
-/* Mejoras para mobile - contraste y tamaños */
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: "Onest Variable", sans-serif;
-  background-color: #0a0a0a;
-  color: #ffffff;
-  line-height: 1.6;
-}
-
-/* Animaciones de entrada personalizadas */
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slide-in-from-bottom-6 {
-  from {
-    opacity: 0;
-    transform: translateY(1.5rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slide-in-from-bottom-8 {
-  from {
-    opacity: 0;
-    transform: translateY(2rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slide-in-from-left-5 {
-  from {
-    opacity: 0;
-    transform: translateX(-1.25rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.animate-in {
-  animation-fill-mode: both;
-}
-
-.fade-in {
-  animation-name: fade-in;
-}
-
-.slide-in-from-bottom-6 {
-  animation-name: slide-in-from-bottom-6;
-}
-
-.slide-in-from-bottom-8 {
-  animation-name: slide-in-from-bottom-8;
-}
-
-.slide-in-from-left-5 {
-  animation-name: slide-in-from-left-5;
-}
-
-.duration-700 {
-  animation-duration: 700ms;
-}
-
-.delay-200 {
-  animation-delay: 200ms;
-}
-
-.delay-400 {
-  animation-delay: 400ms;
-}
-
-.delay-600 {
-  animation-delay: 600ms;
-}
-
-.delay-800 {
-  animation-delay: 800ms;
-}
-
-/* Mejoras de contraste para textos en mobile */
-@media (max-width: 768px) {
-  /* Textos principales más legibles */
-  h1, h2, h3, h4, h5, h6 {
-    color: #ffffff;
-    font-weight: 600;
-  }
-  
-  /* Párrafos con mejor contraste */
-  p {
-    color: #b0b0b0; /* Mejor contraste WCAG AA */
-    font-size: 1rem;
-    line-height: 1.7;
-  }
-  
-  /* Textos secundarios más contrastados */
-  .text-white\/70 {
-    color: #b3b3b3 !important; /* Mejor contraste WCAG AA */
-  }
-  
-  .text-white\/60 {
-    color: #8c8c8c !important; /* Mejor contraste WCAG AA */
-  }
-  
-  /* Enlaces más visibles */
-  a {
-    color: #60a5fa;
-    transition: color 0.2s ease;
-  }
-  
-  a:hover {
-    color: #93c5fd;
-  }
-  
-  /* Botones con mejor contraste */
-  .bg-blue-600 {
-    background-color: #1d4ed8;
-  }
-  
-  .bg-blue-600:hover {
-    background-color: #1e40af;
-  }
-}
-
-/* Mejoras generales de tipografía */
-h1 {
-  font-size: clamp(1.75rem, 4vw, 3rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-
-h2 {
-  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-
-h3 {
-  font-size: clamp(1.25rem, 3vw, 2rem);
-  font-weight: 600;
-}
-
-/* Espaciado mejorado para mobile */
-@media (max-width: 640px) {
-  .space-y-6 > * + * {
-    margin-top: 1.75rem;
-  }
-  
-  .space-y-4 > * + * {
-    margin-top: 1.25rem;
-  }
-}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; background: var(--paper); }
+a { color: inherit; }
+button, input { font: inherit; }
+::selection { background: var(--ink); color: var(--lilac); }
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; box-shadow: 0 0 0 6px var(--lilac-strong); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

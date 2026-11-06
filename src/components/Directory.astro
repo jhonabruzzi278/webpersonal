@@ -1,0 +1,208 @@
+---
+import { getLangFromUrl } from '../utils/i18n.ts';
+import { getProjectsByLang } from '../utils/projects.ts';
+import { Image } from 'astro:assets';
+import JonathanPhoto from '../assets/jonathan-photo.jpg';
+
+interface Props { kind: 'projects' | 'services' | 'resources' }
+const { kind } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const es = lang === 'es';
+const home = es ? '/' : '/en';
+const projects = kind === 'projects' ? await getProjectsByLang(lang) : [];
+const content = {
+  projects: es
+    ? { label: 'PORTFOLIO / 01', title: 'Proyectos que ya están en marcha.', intro: 'Una selección de webs y aplicaciones que he creado. Entra en cada proyecto para ver el resultado o explorar su código.' }
+    : { label: 'PORTFOLIO / 01', title: 'Projects already out in the world.', intro: 'A selection of websites and apps I have built. Open a project to see it live or explore its code.' },
+  services: es
+    ? { label: 'SERVICIOS / 02', title: 'Hagamos que tu idea funcione.', intro: 'Trabajo en la creación de sitios y aplicaciones web, desde la primera idea hasta la publicación y el soporte.' }
+    : { label: 'SERVICES / 02', title: 'Let’s make your idea work.', intro: 'I build websites and web apps, from the first idea through launch and ongoing support.' },
+  resources: es
+    ? { label: 'RECURSOS / 03', title: 'Recursos para empezar con claridad.', intro: 'Dos herramientas gratuitas y prácticas para organizar tu proyecto web. Descárgalas sin registro.' }
+    : { label: 'RESOURCES / 03', title: 'Resources to start with clarity.', intro: 'Two free, practical tools for organizing your website project. Download them without signing up.' },
+}[kind];
+const services = es ? [
+  { num: '01', title: 'Sitios web', text: 'Diseño y desarrollo de sitios rápidos, adaptados a móviles y fáciles de navegar, con Astro y tecnologías web modernas.', bullets: ['Landing pages', 'Portafolios', 'Sitios para negocios'] },
+  { num: '02', title: 'Aplicaciones web', text: 'Funcionalidades a medida para convertir una idea en una herramienta útil: interfaces, formularios, datos e integraciones.', bullets: ['Frontend y backend', 'Bases de datos', 'Integraciones'] },
+  { num: '03', title: 'Soporte y mejoras', text: 'Ayuda técnica para corregir problemas, mejorar rendimiento y mantener una experiencia web estable.', bullets: ['Optimización', 'Mantenimiento', 'Soporte IT'] },
+] : [
+  { num: '01', title: 'Websites', text: 'Fast, mobile friendly and easy to navigate websites built with Astro and modern web technologies.', bullets: ['Landing pages', 'Portfolios', 'Business websites'] },
+  { num: '02', title: 'Web apps', text: 'Custom functionality that turns an idea into a useful tool: interfaces, forms, data and integrations.', bullets: ['Frontend and backend', 'Databases', 'Integrations'] },
+  { num: '03', title: 'Support and improvements', text: 'Technical help to fix issues, improve performance and keep your web experience reliable.', bullets: ['Optimization', 'Maintenance', 'IT support'] },
+];
+const resources = es ? [
+  { num: '01', title: 'Checklist para lanzar una web', type: 'Lista de verificación', text: 'Repasa contenido, móvil, accesibilidad, velocidad, SEO y contacto antes de publicar.', file: '/recursos/checklist-web-es.txt', action: 'Descargar checklist' },
+  { num: '02', title: 'Brief para tu proyecto web', type: 'Plantilla editable', text: 'Ordena objetivos, público, páginas, funcionalidades y materiales antes de empezar.', file: '/recursos/brief-web-es.txt', action: 'Descargar plantilla' },
+] : [
+  { num: '01', title: 'Website launch checklist', type: 'Checklist', text: 'Review content, mobile, accessibility, speed, SEO and contact before publishing.', file: '/recursos/checklist-web-en.txt', action: 'Download checklist' },
+  { num: '02', title: 'Website project brief', type: 'Editable template', text: 'Organize goals, audience, pages, features and assets before starting.', file: '/recursos/brief-web-en.txt', action: 'Download template' },
+];
+---
+
+<main class="directory">
+  <div class="directory-inner">
+    <a class="back-link" href={home}>← {es ? 'Volver al inicio' : 'Back home'}</a>
+    <header class="page-intro">
+      <p class="page-label">{content.label}</p>
+      <h1>{content.title}</h1>
+      <p>{content.intro}</p>
+    </header>
+
+    {kind === 'projects' && (
+      <>
+      <section class="portfolio-about" aria-labelledby="portfolio-about-title">
+        <Image src={JonathanPhoto} alt={es ? 'Jonathan Guerra' : 'Jonathan Guerra'} class="portfolio-portrait" width={240} height={240} loading="lazy" />
+        <div>
+          <p class="page-label">{es ? 'SOBRE MÍ' : 'ABOUT ME'}</p>
+          <h2 id="portfolio-about-title">{es ? 'Hola, soy Jonathan.' : 'Hi, I’m Jonathan.'}</h2>
+          <p>{es
+            ? 'Soy desarrollador web y especialista en soporte IT. Nací en Cuba y hoy vivo en Chile. Me gusta crear experiencias web útiles, cuidadas y fáciles de usar.'
+            : 'I’m a web developer and IT support specialist. Originally from Cuba, I now live in Chile. I enjoy creating useful, thoughtful and easy to use web experiences.'}</p>
+          <p>{es
+            ? 'Trabajo con Astro, Next.js, Python y Node.js para convertir ideas en productos digitales que funcionan de verdad.'
+            : 'I work with Astro, Next.js, Python and Node.js to turn ideas into digital products that really work.'}</p>
+        </div>
+      </section>
+      <h2 class="projects-heading">{es ? 'Proyectos destacados' : 'Featured projects'}</h2>
+      <section class="entry-grid" aria-label={es ? 'Proyectos' : 'Projects'}>
+        {projects.map((project, index) => (
+          <article class="entry-card project-card">
+            <a class="project-image" href={project.data.link} target="_blank" rel="noopener noreferrer">
+              <img src={project.data.image} alt={project.data.title} loading="lazy" />
+            </a>
+            <div class="entry-content">
+              <span class="entry-kicker">{String(index + 1).padStart(2, '0')} / {es ? 'PROYECTO' : 'PROJECT'}</span>
+              <h2>{project.data.title}</h2>
+              <p>{project.body?.trim() || (es ? 'Proyecto web.' : 'Web project.')}</p>
+              <div class="tag-list">{project.data.tags.map(tag => <span>{tag}</span>)}</div>
+              <div class="entry-actions">
+                <a href={project.data.link} target="_blank" rel="noopener noreferrer">{es ? 'Ver sitio' : 'Live site'} ↗</a>
+                {project.data.github && <a href={project.data.github} target="_blank" rel="noopener noreferrer">{es ? 'Ver código' : 'Source code'} ↗</a>}
+              </div>
+            </div>
+          </article>
+        ))}
+      </section>
+      <section class="portfolio-experience" aria-labelledby="experience-title">
+        <p class="page-label">{es ? 'EXPERIENCIA Y FORMACIÓN' : 'EXPERIENCE AND EDUCATION'}</p>
+        <h2 id="experience-title">{es ? 'El camino detrás de mi trabajo.' : 'The path behind my work.'}</h2>
+        <div class="experience-grid">
+          <article><span>2024 — {es ? 'actualidad' : 'present'}</span><h3>{es ? 'Soporte IT' : 'IT support'}</h3><p>CasChile S.A.</p></article>
+          <article><span>2024 — {es ? 'actualidad' : 'present'}</span><h3>{es ? 'Desarrollo web freelance' : 'Freelance web development'}</h3><p>{es ? 'Proyectos independientes' : 'Independent projects'}</p></article>
+          <article><span>2024 — {es ? 'actualidad' : 'present'}</span><h3>Duoc UC</h3><p>{es ? 'Técnico en Informática y Telecomunicaciones' : 'Technician in Computer Science and Telecommunications'}</p></article>
+        </div>
+      </section>
+      </>
+    )}
+
+    {kind === 'services' && (
+      <>
+        <section class="entry-grid services-grid" aria-label={es ? 'Servicios' : 'Services'}>
+          {services.map(service => (
+            <article class="entry-card service-card">
+              <span class="entry-kicker">{service.num} / {es ? 'SERVICIO' : 'SERVICE'}</span>
+              <h2>{service.title}</h2>
+              <p>{service.text}</p>
+              <ul>{service.bullets.map(bullet => <li>{bullet}</li>)}</ul>
+              <a class="entry-button" href={`mailto:jonathanguerra278@gmail.com?subject=${encodeURIComponent(es ? `Consulta sobre ${service.title}` : `Inquiry about ${service.title}`)}`}>{es ? 'Consultar servicio' : 'Ask about this service'} ↗</a>
+            </article>
+          ))}
+        </section>
+        <section class="process">
+          <p class="page-label">{es ? 'CÓMO TRABAJO' : 'HOW I WORK'}</p>
+          <h2>{es ? 'De la idea a una web publicada.' : 'From idea to a live website.'}</h2>
+          <ol>
+            <li><strong>01</strong><span>{es ? 'Hablamos de tus objetivos y necesidades.' : 'We discuss your goals and needs.'}</span></li>
+            <li><strong>02</strong><span>{es ? 'Definimos alcance, diseño y funcionalidades.' : 'We define scope, design and features.'}</span></li>
+            <li><strong>03</strong><span>{es ? 'Construyo, revisamos y publicamos.' : 'I build, we review and then launch.'}</span></li>
+          </ol>
+        </section>
+      </>
+    )}
+
+    {kind === 'resources' && (
+      <section class="entry-grid resources-grid" aria-label={es ? 'Recursos gratuitos' : 'Free resources'}>
+        {resources.map(resource => (
+          <article class="entry-card resource-card">
+            <span class="entry-kicker">{resource.num} / {resource.type}</span>
+            <h2>{resource.title}</h2>
+            <p>{resource.text}</p>
+            <a class="entry-button" href={resource.file} download>{resource.action} ↓</a>
+          </article>
+        ))}
+      </section>
+    )}
+
+    <section class="directory-contact" id="contacto">
+      <div>
+        <p class="page-label">{es ? 'HABLEMOS' : 'LET’S TALK'}</p>
+        <h2>{es ? '¿Tienes un proyecto en mente?' : 'Have a project in mind?'}</h2>
+        <p>{es ? 'Cuéntame qué necesitas y vemos cómo hacerlo realidad.' : 'Tell me what you need and let’s see how to make it happen.'}</p>
+      </div>
+      <a href="mailto:jonathanguerra278@gmail.com">{es ? 'Escríbeme' : 'Email me'} ↗</a>
+    </section>
+    <footer class="directory-footer"><span>© {new Date().getFullYear()} Jonathan Guerra</span><a href={home}>{es ? 'Inicio' : 'Home'} ↑</a></footer>
+  </div>
+</main>
+
+<style>
+  .directory { --ink: #0d0b14; --paper: #f3ecff; --lilac: #c8b4ff; color: var(--ink); min-height: 100vh; background-color: var(--paper); background-image: radial-gradient(rgb(13 11 20 / .12) 1.2px, transparent 1.5px); background-size: 24px 24px; }
+  .directory-inner { max-width: 1200px; margin: auto; padding: 46px 38px 30px; }
+  .back-link { font: 700 12px var(--font-mono); text-transform: uppercase; text-decoration: none; display: inline-block; background: #fff; border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); padding: 10px 14px; }
+  .back-link:hover, .entry-button:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
+  .page-intro { padding: 70px 0 54px; max-width: 900px; }
+  .page-label, .entry-kicker { font: 800 11px var(--font-mono); letter-spacing: .1em; text-transform: uppercase; }
+  .page-label { display: inline-block; background: var(--ink); color: var(--lilac); padding: 7px 10px; margin: 0 0 22px; }
+  .page-intro h1 { font-size: clamp(42px, 6vw, 76px); line-height: 1; letter-spacing: -.055em; margin: 0 0 18px; max-width: 850px; }
+  .page-intro > p:last-child { font-size: clamp(16px, 1.7vw, 21px); line-height: 1.55; max-width: 740px; margin: 0; }
+  .entry-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  .portfolio-about { display: grid; grid-template-columns: 220px 1fr; gap: 35px; align-items: center; padding: 30px; margin-bottom: 66px; background: #fff; border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); }
+  .portfolio-portrait { width: 220px; height: 220px; object-fit: cover; border: 3px solid var(--ink); box-shadow: 5px 5px 0 var(--lilac); }
+  .portfolio-about .page-label { margin-bottom: 12px; }
+  .portfolio-about h2, .portfolio-experience h2, .projects-heading { font-size: clamp(30px, 4vw, 48px); letter-spacing: -.05em; line-height: 1.05; margin: 0 0 14px; }
+  .portfolio-about p:not(.page-label) { line-height: 1.55; margin: 0 0 10px; }
+  .projects-heading { margin-bottom: 25px; }
+  .portfolio-experience { margin-top: 90px; }
+  .experience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .experience-grid article { padding: 22px; background: #fff; border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); }
+  .experience-grid article:nth-child(2) { background: var(--lilac); }
+  .experience-grid article:nth-child(3) { background: #b9c4ff; }
+  .experience-grid span { font: 800 11px var(--font-mono); text-transform: uppercase; }
+  .experience-grid h3 { margin: 18px 0 5px; font-size: 22px; }
+  .experience-grid p { margin: 0; }
+  .entry-card { background: #fff; border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); min-width: 0; }
+  .entry-card:nth-child(4n + 2) { background: #e7dcff; }
+  .entry-card:nth-child(4n + 3) { background: #b9c4ff; }
+  .entry-card:nth-child(4n + 4) { background: #f1c9ff; }
+  .project-image { display: block; height: 240px; border-bottom: 3px solid var(--ink); overflow: hidden; background: #e7dcff; }
+  .project-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .2s; }
+  .project-image:hover img { transform: scale(1.035); }
+  .entry-content { padding: 25px; }
+  .entry-kicker { color: #3a3550; }
+  .entry-card h2 { font-size: clamp(25px, 2.8vw, 34px); letter-spacing: -.04em; line-height: 1.1; margin: 14px 0; }
+  .entry-card p { line-height: 1.55; margin: 0 0 22px; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 24px; }
+  .tag-list span { font: 700 11px var(--font-mono); background: var(--lilac); border: 2px solid var(--ink); padding: 4px 7px; }
+  .entry-actions { display: flex; gap: 14px; flex-wrap: wrap; border-top: 2px solid var(--ink); padding-top: 17px; }
+  .entry-actions a { font: 700 12px var(--font-mono); text-transform: uppercase; text-underline-offset: 4px; }
+  .entry-actions a:hover { color: #6346a7; }
+  .services-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .service-card, .resource-card { padding: 28px; display: flex; flex-direction: column; }
+  .service-card ul { margin: 0 0 25px; padding: 0; list-style: none; }
+  .service-card li { border-top: 2px solid var(--ink); padding: 10px 0; font-weight: 700; }
+  .service-card li::before { content: '↗ '; }
+  .entry-button { display: inline-block; align-self: flex-start; margin-top: auto; background: var(--lilac); border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); padding: 11px 15px; text-decoration: none; text-transform: uppercase; font: 700 12px var(--font-mono); }
+  .resource-card { min-height: 270px; }
+  .process { margin-top: 90px; }
+  .process h2 { font-size: clamp(32px, 4vw, 52px); letter-spacing: -.05em; margin: 0 0 24px; }
+  .process ol { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .process li { padding: 20px; background: #fff; border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); display: flex; gap: 15px; align-items: flex-start; }
+  .process li strong { font: 800 20px var(--font-mono); color: #6346a7; }
+  .directory-contact { margin: 100px 0 60px; padding: clamp(28px, 5vw, 60px); background: var(--ink); color: #fff; border: 3px solid var(--ink); box-shadow: 7px 7px 0 #a98bff; display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+  .directory-contact h2 { font-size: clamp(30px, 4vw, 50px); line-height: 1.05; letter-spacing: -.045em; margin: 0 0 14px; }
+  .directory-contact p:last-child { margin: 0; }
+  .directory-contact a { background: var(--lilac); color: var(--ink); border: 3px solid #fff; box-shadow: 4px 4px 0 #fff; padding: 13px 18px; white-space: nowrap; text-decoration: none; text-transform: uppercase; font: 700 12px var(--font-mono); }
+  .directory-footer { border-top: 3px solid var(--ink); padding-top: 20px; display: flex; justify-content: space-between; font: 700 12px var(--font-mono); }
+  @media (max-width: 900px) { .services-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 700px) { .directory-inner { padding: 32px 20px; } .entry-grid, .process ol, .portfolio-about, .experience-grid { grid-template-columns: 1fr; } .portfolio-about { padding: 22px; } .portfolio-portrait { width: 160px; height: 160px; } .page-intro { padding-block: 56px 38px; } .directory-contact { flex-direction: column; align-items: flex-start; } .project-image { height: 210px; } }
+</style>

@@ -1,0 +1,25 @@
+CHECKLIST PARA LANZAR TU WEB
+Jonathan Guerra · jonathanguerra278@gmail.com
+
+CONTENIDO
+[ ] La propuesta principal se entiende en la primera pantalla.
+[ ] Cada página tiene un título claro y una acción siguiente.
+[ ] Datos de contacto, enlaces y horarios están actualizados.
+[ ] La ortografía y los textos se revisaron.
+
+FUNCIONAMIENTO
+[ ] Todos los enlaces y botones abren el destino correcto.
+[ ] Los formularios se probaron de principio a fin.
+[ ] La web funciona con teclado y tiene foco visible.
+[ ] Imágenes y botones tienen nombres o textos accesibles.
+
+MÓVIL Y VELOCIDAD
+[ ] Revisé la web en pantalla pequeña y grande.
+[ ] No hay contenido cortado ni desplazamiento horizontal.
+[ ] Las imágenes están comprimidas y cargan con rapidez.
+
+PUBLICACIÓN
+[ ] Cada página tiene título y descripción para buscadores.
+[ ] El dominio y HTTPS funcionan.
+[ ] La página 404 y los enlaces sociales funcionan.
+[ ] Probé una última vez la web publicada.

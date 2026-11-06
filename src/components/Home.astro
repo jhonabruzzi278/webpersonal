@@ -1,0 +1,182 @@
+---
+import { Image } from 'astro:assets';
+import JonathanPhoto from '../assets/jonathan-photo.jpg';
+import { getLangFromUrl } from '../utils/i18n.ts';
+import HubIcon from './HubIcon.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const es = lang === 'es';
+type LinkIcon = 'portfolio' | 'services' | 'resources';
+type HubLink = { title: string; description: string; href: string; icon: LinkIcon };
+const links: HubLink[] = es ? [
+  { title: 'Mi portfolio', description: 'Proyectos y experiencia', href: '/proyectos', icon: 'portfolio' },
+  { title: 'Servicios', description: 'Webs, apps y soporte IT', href: '/servicios', icon: 'services' },
+  { title: 'Recursos gratis', description: 'Plantillas para tu web', href: '/recursos', icon: 'resources' },
+] : [
+  { title: 'My portfolio', description: 'Projects and experience', href: '/en/projects', icon: 'portfolio' },
+  { title: 'Services', description: 'Websites, apps and IT support', href: '/en/services', icon: 'services' },
+  { title: 'Free resources', description: 'Templates for your website', href: '/en/resources', icon: 'resources' },
+];
+const technologies = [
+  { name: 'AWS', icon: '/brand-icons/aws.svg' },
+  { name: 'Microsoft Azure', icon: '/brand-icons/azure.svg' },
+  { name: 'Google Cloud', icon: '/brand-icons/googlecloud.svg' },
+  { name: 'Astro', icon: '/brand-icons/astro.svg' },
+  { name: 'Claude Code', icon: '/brand-icons/claude.svg' },
+  { name: 'Supabase', icon: '/brand-icons/supabase.svg' },
+  { name: 'Vercel', icon: '/brand-icons/vercel.svg' },
+];
+const socials = [
+  { name: 'LinkedIn', icon: '/brand-icons/linkedin.svg', href: 'https://www.linkedin.com/in/jonathanguerra278' },
+  { name: 'TikTok', icon: '/brand-icons/tiktok.svg', href: null },
+  { name: 'YouTube', icon: '/brand-icons/youtube.svg', href: null },
+  { name: 'WhatsApp', icon: '/brand-icons/whatsapp.svg', href: null },
+  { name: 'Gmail', icon: '/brand-icons/gmail.svg', href: 'mailto:jonathanguerra278@gmail.com' },
+];
+---
+
+<main class="link-hub">
+  <div class="hub-shell">
+    <header class="hub-top">
+      <div class="hub-identity">
+        <span class="hub-brand" aria-hidden="true">JG<span>✳</span></span>
+        <div class="hub-identity-copy">
+          <span class="hub-eyebrow">JG <span aria-hidden="true">/</span> {es ? 'ESPACIO DIGITAL' : 'DIGITAL SPACE'}</span>
+          <strong>{es ? 'Webs y recursos digitales' : 'Websites and digital resources'}</strong>
+        </div>
+      </div>
+      <a class="hub-top-contact" href="mailto:jonathanguerra278@gmail.com" aria-label={es ? 'Escribir a Jonathan por correo' : 'Email Jonathan'}>
+        <span class="contact-dot" aria-hidden="true"></span>
+        <span>{es ? 'HABLEMOS' : 'LET’S TALK'}</span>
+        <span class="contact-arrow" aria-hidden="true">↗</span>
+      </a>
+    </header>
+
+    <div class="tech-banner" aria-label={es ? 'Tecnologías y herramientas: AWS, Microsoft Azure, Google Cloud, Astro, Claude Code, Supabase y Vercel' : 'Technologies and tools: AWS, Microsoft Azure, Google Cloud, Astro, Claude Code, Supabase and Vercel'}>
+      <div class="tech-track" aria-hidden="true">
+        {[0, 1].map(() => <div class="tech-group">{technologies.map(tech => (
+          <span class="tech-item">
+            <span class="tech-icon"><img src={tech.icon} alt="" /></span>
+            {tech.name}
+          </span>
+        ))}</div>)}
+      </div>
+    </div>
+
+    <section class="profile" aria-labelledby="profile-name">
+      <div class="avatar-wrap">
+        <Image src={JonathanPhoto} alt={es ? 'Retrato de Jonathan Guerra' : 'Portrait of Jonathan Guerra'} class="avatar" width={440} height={440} loading="eager" />
+        <span class="avatar-star" aria-hidden="true">✳</span>
+      </div>
+      <p class="profile-label">{es ? 'DESARROLLADOR WEB · SOPORTE IT' : 'WEB DEVELOPER · IT SUPPORT'}</p>
+      <h1 id="profile-name">Jonathan Guerra</h1>
+      <p class="profile-description">{es
+        ? 'Desarrollo sitios y aplicaciones web, comparto recursos útiles y exploro herramientas que hacen más simple crear en internet.'
+        : 'I build websites and web apps, share useful resources and explore tools that make creating online easier.'}</p>
+    </section>
+
+    <section class="links-section" aria-labelledby="links-title">
+      <h2 id="links-title" class="sr-only">{es ? 'Enlaces principales' : 'Main links'}</h2>
+      <div class="link-list">
+        {links.map(link => (
+          <a class="hub-link" href={link.href}>
+            <span class="link-icon"><HubIcon name={link.icon} /></span>
+            <span class="link-copy"><strong>{link.title}</strong><small>{link.description}</small></span>
+            <span class="link-arrow"><HubIcon name="arrow" /></span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <nav class="socials" aria-label={es ? 'Redes sociales' : 'Social links'}>
+      {socials.map(social => social.href ? (
+        <a class="social-item" href={social.href} target={social.href.startsWith('https:') ? '_blank' : undefined} rel={social.href.startsWith('https:') ? 'noopener noreferrer' : undefined} aria-label={social.name}>
+          <span class="social-icon"><img src={social.icon} alt="" /></span><span>{social.name}</span>
+        </a>
+      ) : (
+        <span class="social-item pending" title={es ? 'Enlace pendiente' : 'Link coming soon'} aria-label={`${social.name}: ${es ? 'enlace pendiente' : 'link coming soon'}`}>
+          <span class="social-icon"><img src={social.icon} alt="" /></span><span>{social.name}</span>
+        </span>
+      ))}
+    </nav>
+    <p class="email">jonathanguerra278@gmail.com</p>
+    <footer>© {new Date().getFullYear()} Jonathan Guerra</footer>
+  </div>
+</main>
+
+<style>
+  .link-hub { min-height: 100dvh; padding: 22px 20px 30px; overflow-x: hidden; color: var(--ink); background-color: var(--paper); background-image: radial-gradient(rgb(13 11 20 / .12) 1.2px, transparent 1.5px); background-size: 24px 24px; }
+  .hub-shell { width: min(100%, 580px); margin-inline: auto; }
+  .hub-top { min-height: 88px; display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 22px; padding: 12px 14px; background: #fff; border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); }
+  .hub-identity { display: flex; align-items: center; gap: 15px; min-width: 0; }
+  .hub-brand { width: 54px; height: 54px; flex: none; display: grid; place-items: center; position: relative; background: var(--ink); color: var(--lilac); font: 800 21px var(--font-mono); letter-spacing: -.09em; transform: rotate(-5deg); }
+  .hub-brand span { position: absolute; font-size: 19px; color: #ffe066; right: -10px; top: -14px; transform: rotate(5deg); }
+  .hub-identity-copy { display: grid; gap: 3px; min-width: 0; }
+  .hub-eyebrow { color: var(--ink-soft); font: 800 10px var(--font-mono); letter-spacing: .04em; white-space: nowrap; }
+  .hub-eyebrow span { color: var(--lilac-strong); }
+  .hub-identity-copy strong { font-size: 18px; line-height: 1.05; letter-spacing: -.05em; }
+  .hub-top-contact { display: inline-flex; align-items: center; gap: 8px; flex: none; padding: 11px 12px; background: var(--lilac); border: 2px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); text-decoration: none; font: 800 11px var(--font-mono); white-space: nowrap; transition: transform .15s, box-shadow .15s; }
+  .hub-top-contact:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--ink); }
+  .contact-dot { width: 8px; height: 8px; flex: none; border-radius: 50%; background: #2bc47d; border: 1px solid var(--ink); }
+  .contact-arrow { font-size: 18px; line-height: .6; }
+  .tech-banner { width: 100vw; position: relative; left: 50%; transform: translateX(-50%); margin: 0 0 30px; overflow: hidden; background: var(--ink); color: #fff; border-block: 3px solid var(--ink); }
+  .tech-track { width: max-content; display: flex; animation: tech-scroll 26s linear infinite; }
+  .tech-group { display: flex; flex: none; }
+  .tech-item { display: inline-flex; align-items: center; gap: 10px; padding: 10px 23px; white-space: nowrap; font: 800 13px var(--font-mono); text-transform: uppercase; letter-spacing: .03em; border-right: 2px solid #4c465f; }
+  .tech-icon { width: 32px; height: 32px; flex: none; display: grid; place-items: center; background: #fff; border-radius: 5px; }
+  .tech-icon img { width: 27px; height: 27px; object-fit: contain; }
+  @keyframes tech-scroll { to { transform: translateX(-50%); } }
+  .profile { text-align: center; padding: 0 12px 30px; }
+  .avatar-wrap { width: 224px; height: 224px; position: relative; margin: 0 auto 25px; }
+  .avatar { display: block; width: 224px; height: 224px; object-fit: cover; border-radius: 50%; border: 5px solid var(--ink); box-shadow: 8px 8px 0 var(--lilac-strong); }
+  .avatar-star { display: grid; place-items: center; position: absolute; right: -18px; bottom: 1px; width: 45px; height: 45px; background: #ffe066; border: 3px solid var(--ink); border-radius: 50%; font-size: 25px; }
+  .profile-label { display: inline-block; margin: 0 0 11px; padding: 6px 9px; background: var(--ink); color: var(--lilac); font: 800 10px var(--font-mono); letter-spacing: .08em; }
+  .profile h1 { font-size: clamp(36px, 7vw, 51px); line-height: 1; letter-spacing: -.055em; font-weight: 700; margin: 0 0 12px; }
+  .profile-description { max-width: 440px; margin: 0 auto; font-size: 16px; line-height: 1.5; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+  .link-list { display: grid; gap: 20px; }
+  .hub-link { min-height: 92px; display: flex; align-items: center; gap: 16px; padding: 17px 19px; background: var(--lilac); border: 3px solid var(--ink); box-shadow: 5px 5px 0 var(--ink); text-decoration: none; transition: transform .15s, box-shadow .15s; }
+  .hub-link:hover { transform: translate(-3px, -3px); box-shadow: 8px 8px 0 var(--ink); }
+  .hub-link:active { transform: translate(5px, 5px); box-shadow: none; }
+  .link-icon { width: 45px; height: 45px; flex: none; display: grid; place-items: center; background: #fff; border: 3px solid var(--ink); }
+  .link-icon svg { width: 25px; height: 25px; }
+  .link-copy { display: grid; gap: 3px; min-width: 0; }
+  .link-copy strong { font-size: 19px; line-height: 1.05; letter-spacing: -.035em; }
+  .link-copy small { font-size: 13px; line-height: 1.3; color: var(--ink-soft); }
+  .link-arrow { margin-left: auto; align-self: flex-start; width: 22px; height: 22px; flex: none; }
+  .link-arrow svg { width: 22px; height: 22px; }
+  .socials { display: flex; justify-content: center; gap: 14px; padding-top: 35px; }
+  .social-item { width: 72px; display: grid; justify-items: center; gap: 7px; text-decoration: none; font: 700 10px var(--font-mono); }
+  .social-icon { width: 52px; height: 52px; display: grid; place-items: center; background: #fff; border: 3px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); }
+  .social-icon img { display: block; width: 26px; height: 26px; }
+  .social-item:not(.pending):hover .social-icon { background: var(--lilac); transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--ink); }
+  .social-item.pending { opacity: .62; cursor: default; }
+  .social-item.pending .social-icon { border-style: dashed; }
+  .email { text-align: center; font: 700 12px var(--font-mono); margin: 18px 0 30px; overflow-wrap: anywhere; }
+  footer { text-align: center; border-top: 2px solid var(--ink); padding-top: 16px; font: 700 10px var(--font-mono); color: var(--ink-soft); }
+  @media (max-width: 480px) {
+    .link-hub { padding: 17px 19px 28px; }
+    .hub-top { min-height: 77px; padding: 10px; gap: 8px; box-shadow: 4px 4px 0 var(--ink); }
+    .hub-identity { gap: 9px; }
+    .hub-brand { width: 43px; height: 43px; font-size: 17px; }
+    .hub-brand span { font-size: 15px; right: -8px; top: -11px; }
+    .hub-eyebrow { font-size: 8px; }
+    .hub-identity-copy strong { font-size: 14px; }
+    .hub-top-contact { padding: 9px; font-size: 10px; }
+    .hub-top-contact .contact-dot { display: none; }
+    .tech-banner { margin-bottom: 24px; }
+    .tech-item { padding: 8px 17px; font-size: 11px; }
+    .avatar-wrap, .avatar { width: 192px; height: 192px; }
+    .profile { padding-bottom: 25px; }
+    .link-list { gap: 16px; }
+    .hub-link { min-height: 84px; padding: 14px 12px; gap: 11px; }
+    .link-icon { width: 39px; height: 39px; }
+    .link-icon svg { width: 22px; height: 22px; }
+    .link-copy strong { font-size: 17px; }
+    .link-copy small { font-size: 12px; }
+    .socials { gap: 3px; }
+    .social-item { width: 63px; font-size: 9px; }
+    .social-icon { width: 48px; height: 48px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .hub-link { transition: none; } .tech-track { animation: none; } }
+</style>

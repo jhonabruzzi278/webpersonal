@@ -1,0 +1,30 @@
+BRIEF PARA TU PROYECTO WEB
+Plantilla editable · Jonathan Guerra
+
+1. NEGOCIO O PROYECTO
+Nombre:
+¿Qué haces y para quién?:
+¿Qué problema resuelves?:
+
+2. OBJETIVO
+¿Qué debería hacer una persona al visitar la web?:
+¿Cómo sabrás que la web está funcionando?:
+
+3. PÚBLICO
+¿A quién quieres llegar?:
+¿Qué dudas suele tener antes de contactarte o comprar?:
+
+4. CONTENIDO
+Páginas necesarias:
+Textos disponibles:
+Fotos, logo e identidad visual disponibles:
+Ejemplos de webs que te gustan:
+
+5. FUNCIONALIDADES
+¿Necesitas formulario, reservas, pagos, idiomas u otras funciones?:
+Herramientas que la web debe conectar:
+
+6. PLAZO Y CONTACTO
+Fecha ideal de publicación:
+Persona que revisará y aprobará el contenido:
+Correo de contacto:

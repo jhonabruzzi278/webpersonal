@@ -1,7 +1,6 @@
 ---
 import Header from "../components/Header.astro";
 import "../styles/global.css";
-import "@fontsource-variable/onest";
 import { getLangFromUrl } from '../utils/i18n.ts';
 
 interface Props {
@@ -12,6 +11,7 @@ interface Props {
 const currentLang = Astro.currentLocale || "es";
 const lang = getLangFromUrl(Astro.url);
 const { description, title } = Astro.props;
+const isHome = ['/', '/en', '/en/'].includes(Astro.url.pathname);
 
 const keywords = lang === 'es' 
   ? "Jonathan Guerra, desarrollador web, programador, portfolio, Astro, Next.js, Node.js, React, TailwindCSS, frontend, backend, desarrollo web"
@@ -61,6 +61,9 @@ const personSchema = {
     
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
     
    
     <link rel="icon" type="image/svg+xml" href="/icono.svg" />
@@ -90,8 +93,8 @@ const personSchema = {
     <meta name="generator" content={Astro.generator} />
     
     
-    <meta name="theme-color" content="#000000" />
-    <meta name="msapplication-TileColor" content="#000000" />
+    <meta name="theme-color" content="#f3ecff" />
+    <meta name="msapplication-TileColor" content="#f3ecff" />
     
     
     <script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
@@ -100,35 +103,9 @@ const personSchema = {
     <title>{title}</title>
   </head>
   <body>
-    <div class="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#1034A6)]"></div>
-    <Header />
+    {!isHome && <Header />}
 
     <slot />
 
   </body>
 </html>
-
-<style is:global>
-  :root {
-    color-scheme: light dark;
-  }
-
-  html {
-    font-family: "Onest Variable", system-ui, sans-serif;
-    scroll-behavior: smooth;
-  }
-
-  body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 100vh;
-    position: relative;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-  }
-</style>
